@@ -1,0 +1,38 @@
+* {
+	font-family: Arial, Helvetica, sans-serif;
+	box-sizing: border-box;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid #000;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+.container {
+	margin-bottom: 1em;
+}
+
+input, button, select {
+	padding: 10px;
+	border: 1px solid #000;
+}
+
+dialog {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.no-data {
+	background-color: #ccc;
+	padding: 5px;
+}
+
+.center {
+	text-align: center;
+}

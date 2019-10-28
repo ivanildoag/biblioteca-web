@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Editoras</title>
+		<link rel="stylesheet" href="../style.css">
+	</head>
+
+	<body>
+		<div id="app">
+			<a href="../">Voltar</a>
+			<h1>Editoras</h1>
+			<div class="container">
+				<input type="text" placeholder="Buscar" v-model="busca" @input="listar(busca)">
+			</div>
+			<div class="container">
+				<table cellspacing="0" v-if="editoras.length">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+							<th colspan="2">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="editora in editoras" :key="editora.id">
+							<td>{{editora.id}}</td>
+							<td>{{editora.nome}}</td>
+							<td><button @click="deletar(editora.id)">Deletar</button></td>
+							<td><button @click="abrirEditarPopup(editora)">Editar</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<span class="no-data" v-else>Sem dados</span>
+			</div>
+			<div class="container">
+				<button @click="abrirAdicionarPopup">Adicionar</button>
+			</div>
+			<dialog :open="addDialog">
+				<div class="container">
+					<b>Adicionar</b>
+				</div>
+				<form @submit.prevent="adicionar">
+					<div class="container">
+						<input placeholder="Nome" v-model="nome" required>
+					</div>
+					<div class="container">
+						<button type="submit">Salvar</button>
+						<button @click.prevent="addDialog = false">Cancelar</button>
+					</div>
+				</form>
+			</dialog>
+			<dialog :open="editDialog">
+				<div class="container">
+					<b>Editar</b>
+				</div>
+				<form @submit.prevent="editar">
+					<div class="container">
+						<input placeholder="Nome" v-model="nome" required>
+					</div>
+					<div class="container">
+						<button type="submit">Salvar</button>
+						<button @click.prevent="editDialog = false">Cancelar</button>
+					</div>
+				</form>
+			</dialog>
+			<dialog :open="loading">Carregando...</dialog>
+		</div>
+		<script src="../lib/vue.min.js"></script>
+		<script src="../lib/axios.min.js"></script>
+		<script src="script.js"></script>
+	</body>
+
+</html>
